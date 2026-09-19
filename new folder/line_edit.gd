@@ -36,7 +36,7 @@ Invalid Student ID")
 
 @onready
 var http_request = $HTTPRequest
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxvQN0XlnS9-_TnMIc636ZAwuW1qEAzBjfMle-8dB2PRvfmHrBuNtMoipqfY_d_3Jnn/exec"
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyu2uL_HX1_v_R5Z3EHQhg5Ze386jje-hBUleY44cCC22lt9ByelsA2ijv_e7RgeGmC/exec"
 func grab_data():
 	var headers = ["Content-Type: text/plain"]
 	
