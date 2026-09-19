@@ -8,6 +8,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		grab_data()
@@ -26,7 +27,7 @@ Please don't enter an empty explanation. You don't have to select a reason :)")
 	reason = reasons.find_key(reason)
 	#$"/root/main/Log".text += "\n" + str(IDicts[(new_text)]," visited the library ", str(reason).replace("_"," ").replace("00",':'), " on ",["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][time.weekday],", ","0" if time.month<10 else"",time.month, "/",time.day,"/",time.year,", at ",time.hour,":",time.minute,"::",time.second)
 	var gimme = ({who=IDicts[(new_text)],why=str(compreason[reasons[reason]] if reason else '',),"when"=str(["Su","M","Tu","W","Th","F","Sa"][time.weekday]," ","0" if time.month<10 else"",time.month, "/","0" if time.day<10 else"",time.day,"/",time.year," ","0" if time.hour<10 else"",time.hour,":","0" if time.minute<10 else"",time.minute,"::","0" if time.second<10 else"",time.second)})
-	assert((int(new_text) <= 999999 && int(new_text) >= 1e5), "
+	assert((int(new_text) < 1e6 && int(new_text) >= 1e5), "
 ERR:
 Invalid Student ID")
 	
@@ -51,6 +52,7 @@ func send_data():
 		$"/root/main/Log".text += "\n" + str("Error sending request for Send_Data!")
 	
 
+@warning_ignore("unused_parameter")
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	$"/root/main/Log".text += "\n" + str(result)
 	$"/root/main/Log".text += "\n" + str("YAEY", response_code, "Oh wait awww" if response_code != 200 else ":)")
