@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dtu23focwpi0p"]
+
+[ext_resource type="Script" uid="uid://b7fku4m8tewl4" path="res://line_edit.gd" id="1_wtcfe"]
+
+[node name="Node2D" type="Node2D" unique_id=2145878317]
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1629343097]
+offset_right = 249.0
+offset_bottom = 31.0
+placeholder_text = "Student ID"
+flat = true
+script = ExtResource("1_wtcfe")
+
+[connection signal="text_submitted" from="LineEdit" to="LineEdit" method="_on_text_submitted"]
