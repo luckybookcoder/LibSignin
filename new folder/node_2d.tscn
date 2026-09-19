@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dtu23focwpi0p"]
 
-[ext_resource type="Script" uid="uid://864ylo2ek1sl" path="res://new folder/Maybe.gd" id="1_gs3bj"]
-[ext_resource type="Script" uid="uid://b7fku4m8tewl4" path="res://new folder/line_edit.gd" id="2_5ekvn"]
-[ext_resource type="Script" uid="uid://1u3asrgha0g0" path="res://new folder/selectbarnode.gd" id="3_ahc7q"]
-[ext_resource type="Script" uid="uid://yk1bm0cpi0r1" path="res://new folder/OtherEdit.gd" id="4_tca83"]
+[ext_resource type="Script" uid="uid://ij6d3abbwvci" path="res://new folder/Maybe.gd" id="1_gs3bj"]
+[ext_resource type="Script" uid="uid://dob6xt1y6y1dm" path="res://new folder/line_edit.gd" id="2_5ekvn"]
+[ext_resource type="Script" uid="uid://dksrgnudyv3sp" path="res://new folder/selectbarnode.gd" id="3_ahc7q"]
+[ext_resource type="Script" uid="uid://cy2ayi3dwenr5" path="res://new folder/OtherEdit.gd" id="4_tca83"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtcfe"]
 content_margin_left = 4.0
@@ -113,7 +113,7 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_epypp"]
 
-[node name="Node2D" type="Node2D" unique_id=2145878317]
+[node name="main" type="Node2D" unique_id=2145878317]
 script = ExtResource("1_gs3bj")
 
 [node name="LineEdit" type="LineEdit" parent="." unique_id=1629343097]
@@ -311,6 +311,11 @@ script = ExtResource("4_tca83")
 [node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1904463452]
 download_file = "res://new folder/text.txt"
 max_redirects = 25
+
+[node name="Log" type="RichTextLabel" parent="." unique_id=433542121]
+offset_left = 578.0
+offset_right = 1153.0
+offset_bottom = 642.0
 
 [connection signal="text_submitted" from="LineEdit" to="LineEdit" method="_on_text_submitted"]
 [connection signal="request_completed" from="LineEdit/HTTPRequest" to="LineEdit" method="_on_http_request_request_completed"]

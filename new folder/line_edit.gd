@@ -1,10 +1,9 @@
 extends LineEdit
 var IDicts :Dictionary= {774937:"The Lucky Bookwyrm"}
 enum reasons {for_an_unstated_reason,to_check_out_or_return_materials,for_lunch,as_a_hangout_spot,to_print_something,for_a_club_meeting,to_study,for_a_custom_reason00,}
-const compreason = ["Unstated","Checkout/Return","Lunch","Hang out",'Printing',"Club","Study",'']
+const compreason = ["Unstated","Checkout/Return","Lunch","Hang out",'$"/root/main/Log".text += "\n" + string',"Club","Study",'']
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(JSON.stringify({774937:"Rowan Moon Bell"}))
 	grab_data() # Replace with function body.
 
 
@@ -25,13 +24,13 @@ ERR:
 Please don't enter an empty explanation. You don't have to select a reason :)")
 	var _cust = ""
 	reason = reasons.find_key(reason)
-	print(IDicts[(new_text)]," visited the library ", str(reason).replace("_"," ").replace("00",':'), " on ",["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][time.weekday],", ","0" if time.month<10 else"",time.month, "/",time.day,"/",time.year,", at ",time.hour,":",time.minute,"::",time.second)
+	#$"/root/main/Log".text += "\n" + str(IDicts[(new_text)]," visited the library ", str(reason).replace("_"," ").replace("00",':'), " on ",["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][time.weekday],", ","0" if time.month<10 else"",time.month, "/",time.day,"/",time.year,", at ",time.hour,":",time.minute,"::",time.second)
 	var gimme = ({who=IDicts[(new_text)],why=str(compreason[reasons[reason]] if reason else '',),"when"=str(["Su","M","Tu","W","Th","F","Sa"][time.weekday]," ","0" if time.month<10 else"",time.month, "/",time.day,"/",time.year," ",time.hour,":",time.minute,"::",time.second)})
 	assert((int(new_text) <= 999999 && int(new_text) >= 1e5), "
 ERR:
 Invalid Student ID")
 	
-	print(gimme)
+	#$"/root/main/Log".text += "\n" + str(gimme)
 	$"..".send_data_to_sheet(gimme)
 
 @onready
@@ -42,19 +41,19 @@ func grab_data():
 	
 	var err = http_request.request(WEB_APP_URL, headers, HTTPClient.METHOD_GET)
 	if err != OK:
-		print("Error sending request!")
+		$"/root/main/Log".text += "\n" + str("Error sending request for Grab_Data!")
 
 func send_data():
 	var headers = ["Content-Type: application/json"]
 	
 	var err = http_request.request(WEB_APP_URL, headers, HTTPClient.METHOD_POST, JSON.stringify(IDicts))
 	if err != OK:
-		print("Error sending request!")
+		$"/root/main/Log".text += "\n" + str("Error sending request for Send_Data!")
 	
 
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
-	print(result)
-	print("YAEY", response_code, "Oh wait awww" if response_code != 200 else ":)")
-	print(body.get_string_from_utf8()) # Replace with function body.
-	print(JSON.parse_string(body.get_string_from_utf8()))
+	$"/root/main/Log".text += "\n" + str(result)
+	$"/root/main/Log".text += "\n" + str("YAEY", response_code, "Oh wait awww" if response_code != 200 else ":)")
+	$"/root/main/Log".text += "\n" + str(body.get_string_from_utf8()) # Replace with function body.
+	$"/root/main/Log".text += "\n" + str(JSON.parse_string(body.get_string_from_utf8()))
 	IDicts = JSON.parse_string(body.get_string_from_utf8())
