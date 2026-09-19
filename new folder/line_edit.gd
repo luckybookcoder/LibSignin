@@ -17,7 +17,7 @@ func _on_text_submitted(new_text: String) -> void:
 	var reason = 0
 	for i in $"../WhyLine".get_children():
 		if i.on:
-			reason = i.name.replace("Button",'')
+			reason = int(i.name.replace("Button",''))
 	if reason == compreason.size():
 		assert($"../WhyLine/Button7/LineEdit".text != "", "
 ERR:
@@ -25,7 +25,7 @@ Please don't enter an empty explanation. You don't have to select a reason :)")
 	var _cust = ""
 	reason = reasons.find_key(reason)
 	#$"/root/main/Log".text += "\n" + str(IDicts[(new_text)]," visited the library ", str(reason).replace("_"," ").replace("00",':'), " on ",["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][time.weekday],", ","0" if time.month<10 else"",time.month, "/",time.day,"/",time.year,", at ",time.hour,":",time.minute,"::",time.second)
-	var gimme = ({who=IDicts[(new_text)],why=str(compreason[reasons[reason]] if reason else '',),"when"=str(["Su","M","Tu","W","Th","F","Sa"][time.weekday]," ","0" if time.month<10 else"",time.month, "/",time.day,"/",time.year," ",time.hour,":",time.minute,"::",time.second)})
+	var gimme = ({who=IDicts[(new_text)],why=str(compreason[reasons[reason]] if reason else '',),"when"=str(["Su","M","Tu","W","Th","F","Sa"][time.weekday]," ","0" if time.month<10 else"",time.month, "/","0" if time.day<10 else"",time.day,"/",time.year," ","0" if time.hour<10 else"",time.hour,":","0" if time.minute<10 else"",time.minute,"::","0" if time.second<10 else"",time.second)})
 	assert((int(new_text) <= 999999 && int(new_text) >= 1e5), "
 ERR:
 Invalid Student ID")
@@ -37,14 +37,14 @@ Invalid Student ID")
 var http_request = $HTTPRequest
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxvQN0XlnS9-_TnMIc636ZAwuW1qEAzBjfMle-8dB2PRvfmHrBuNtMoipqfY_d_3Jnn/exec"
 func grab_data():
-	var headers = ["Content-Type: application/json"]
+	var headers = ["Content-Type: text/plain"]
 	
 	var err = http_request.request(WEB_APP_URL, headers, HTTPClient.METHOD_GET)
 	if err != OK:
 		$"/root/main/Log".text += "\n" + str("Error sending request for Grab_Data!")
 
 func send_data():
-	var headers = ["Content-Type: application/json"]
+	var headers = ["Content-Type: text/plain"]
 	
 	var err = http_request.request(WEB_APP_URL, headers, HTTPClient.METHOD_POST, JSON.stringify(IDicts))
 	if err != OK:

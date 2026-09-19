@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func send_data_to_sheet(payload:Dictionary) -> void:
 	var json_string = JSON.stringify(payload)
-	var headers = ["Content-Type: application/json"]
+	var headers = ["Content-Type: text/plain"]
 	
 	var err = http_request.request(WEB_APP_URL, headers, HTTPClient.METHOD_POST, json_string)
 	if err != OK:
