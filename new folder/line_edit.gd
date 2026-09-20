@@ -1,7 +1,8 @@
 extends LineEdit
 var IDicts :Dictionary= {774937:"The Lucky Bookwyrm"}
 enum reasons {for_an_unstated_reason,to_check_out_or_return_materials,for_lunch,as_a_hangout_spot,to_print_something,for_a_club_meeting,to_study,for_a_custom_reason00,}
-const compreason = ["Unstated","Checkout/Return","Lunch","Hang out",'$"/root/main/Log".text += "\n" + string',"Club","Study",'']
+const compreason = ["Unstated","Checkout/Return","Lunch","Hang out",'print',"Club","Study",'']
+const Leaderboard_URL = "https://script.google.com/macros/s/AKfycbwAsKV9S_ihhaTvuPG6CND8cYw5c4YKvDfwnU8_5XqUValYCjlXKNx0-bVuDrHTg18aSA/exec"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	grab_data() # Replace with function body.
@@ -33,6 +34,17 @@ Invalid Student ID")
 	
 	#$"/root/main/Log".text += "\n" + str(gimme)
 	$"..".send_data_to_sheet(gimme)
+	leaderboard(IDicts[new_text])
+@onready
+var http2 = $HTTPRequest2 
+
+func leaderboard(who:String):
+	var headers = ["Content-Type: text/plain"]
+	print(who)
+	var err = http2.request(Leaderboard_URL, headers, HTTPClient.METHOD_POST, JSON.stringify(who))
+	if err != OK:
+		$"/root/main/Log".text += "\n" + str("Error sending request for Send_Data!")
+	
 
 @onready
 var http_request = $HTTPRequest
@@ -59,3 +71,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 	$"/root/main/Log".text += "\n" + str(body.get_string_from_utf8()) # Replace with function body.
 	$"/root/main/Log".text += "\n" + str(JSON.parse_string(body.get_string_from_utf8()))
 	IDicts = JSON.parse_string(body.get_string_from_utf8())
+
+
+func _on_http_request_2_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	print(response_code,) # Replace with function body.

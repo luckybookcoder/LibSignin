@@ -125,6 +125,8 @@ script = ExtResource("2_5ekvn")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="LineEdit" unique_id=1594278381]
 
+[node name="HTTPRequest2" type="HTTPRequest" parent="LineEdit" unique_id=918526634]
+
 [node name="WhyLine" type="Control" parent="." unique_id=21594431]
 layout_mode = 3
 anchors_preset = 0
@@ -319,6 +321,7 @@ offset_bottom = 642.0
 
 [connection signal="text_submitted" from="LineEdit" to="LineEdit" method="_on_text_submitted"]
 [connection signal="request_completed" from="LineEdit/HTTPRequest" to="LineEdit" method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="LineEdit/HTTPRequest2" to="LineEdit" method="_on_http_request_2_request_completed"]
 [connection signal="pressed" from="WhyLine/Button1" to="WhyLine/Button1" method="_on_pressed"]
 [connection signal="pressed" from="WhyLine/Button2" to="WhyLine/Button2" method="_on_pressed"]
 [connection signal="pressed" from="WhyLine/Button3" to="WhyLine/Button3" method="_on_pressed"]
