@@ -4,6 +4,38 @@
 [ext_resource type="Script" uid="uid://dob6xt1y6y1dm" path="res://new folder/line_edit.gd" id="2_5ekvn"]
 [ext_resource type="Script" uid="uid://dksrgnudyv3sp" path="res://new folder/selectbarnode.gd" id="3_ahc7q"]
 [ext_resource type="Script" uid="uid://cy2ayi3dwenr5" path="res://new folder/OtherEdit.gd" id="4_tca83"]
+[ext_resource type="Script" uid="uid://lykejp3o25ml" path="res://new folder/register.gd" id="5_5ekvn"]
+[ext_resource type="Script" uid="uid://cbrm5bxa88mew" path="res://new folder/loader.gd" id="6_ahc7q"]
+[ext_resource type="Texture2D" uid="uid://cu2pixerr1gpw" path="res://new folder/icon.svg" id="7_tca83"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gs3bj"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+draw_center = false
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ekvn"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtcfe"]
 content_margin_left = 4.0
@@ -113,25 +145,61 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_epypp"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahc7q"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [node name="main" type="Node2D" unique_id=2145878317]
 script = ExtResource("1_gs3bj")
 
-[node name="LineEdit" type="LineEdit" parent="." unique_id=1629343097]
+[node name="ID" type="LineEdit" parent="." unique_id=1629343097]
 offset_right = 249.0
 offset_bottom = 31.0
-placeholder_text = "Student ID"
+theme_override_styles/focus = SubResource("StyleBoxFlat_gs3bj")
+placeholder_text = "ID (Register first)"
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
 flat = true
+caret_blink = true
+script = ExtResource("2_5ekvn")
+ID = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="ID" unique_id=1594278381]
+
+[node name="HTTPRequest2" type="HTTPRequest" parent="ID" unique_id=918526634]
+
+[node name="Name" type="LineEdit" parent="." unique_id=930192141]
+offset_top = 43.0
+offset_right = 249.0
+offset_bottom = 74.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_5ekvn")
+placeholder_text = "Or: Name (First and last)"
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+flat = true
+caret_blink = true
 script = ExtResource("2_5ekvn")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="LineEdit" unique_id=1594278381]
+[node name="HTTPRequest" type="HTTPRequest" parent="Name" unique_id=394921167]
 
-[node name="HTTPRequest2" type="HTTPRequest" parent="LineEdit" unique_id=918526634]
+[node name="HTTPRequest2" type="HTTPRequest" parent="Name" unique_id=188767446]
 
 [node name="WhyLine" type="Control" parent="." unique_id=21594431]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Button1" type="Button" parent="WhyLine" unique_id=178762681]
 layout_mode = 0
@@ -139,6 +207,7 @@ offset_left = 61.0
 offset_top = 156.0
 offset_right = 77.0
 offset_bottom = 172.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_wtcfe")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_0hol4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0e48y")
@@ -147,6 +216,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_kdubu")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_d21ai")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_epypp")
 script = ExtResource("3_ahc7q")
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WhyLine/Button1" unique_id=1739950365]
 layout_mode = 0
@@ -163,6 +233,7 @@ offset_left = 61.0
 offset_top = 176.0
 offset_right = 77.0
 offset_bottom = 192.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_wtcfe")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_0hol4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0e48y")
@@ -171,6 +242,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_kdubu")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_d21ai")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_epypp")
 script = ExtResource("3_ahc7q")
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="WhyLine/Button2" unique_id=772952423]
 layout_mode = 0
@@ -187,6 +259,7 @@ offset_left = 61.0
 offset_top = 196.0
 offset_right = 77.0
 offset_bottom = 212.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_wtcfe")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_0hol4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0e48y")
@@ -195,6 +268,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_kdubu")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_d21ai")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_epypp")
 script = ExtResource("3_ahc7q")
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="WhyLine/Button3" unique_id=189627895]
 layout_mode = 0
@@ -211,6 +285,7 @@ offset_left = 61.0
 offset_top = 216.0
 offset_right = 77.0
 offset_bottom = 232.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_wtcfe")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_0hol4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0e48y")
@@ -219,6 +294,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_kdubu")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_d21ai")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_epypp")
 script = ExtResource("3_ahc7q")
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="WhyLine/Button4" unique_id=945767602]
 layout_mode = 0
@@ -235,6 +311,7 @@ offset_left = 61.0
 offset_top = 236.0
 offset_right = 77.0
 offset_bottom = 252.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_wtcfe")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_0hol4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0e48y")
@@ -243,6 +320,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_kdubu")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_d21ai")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_epypp")
 script = ExtResource("3_ahc7q")
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="WhyLine/Button5" unique_id=493392780]
 layout_mode = 0
@@ -259,6 +337,7 @@ offset_left = 61.0
 offset_top = 256.0
 offset_right = 77.0
 offset_bottom = 272.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_wtcfe")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_0hol4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0e48y")
@@ -267,6 +346,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_kdubu")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_d21ai")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_epypp")
 script = ExtResource("3_ahc7q")
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel6" type="RichTextLabel" parent="WhyLine/Button6" unique_id=250224347]
 layout_mode = 0
@@ -283,6 +363,7 @@ offset_left = 61.0
 offset_top = 276.0
 offset_right = 77.0
 offset_bottom = 292.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_wtcfe")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_0hol4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0e48y")
@@ -291,6 +372,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_kdubu")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_d21ai")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_epypp")
 script = ExtResource("3_ahc7q")
+metadata/_edit_use_anchors_ = true
 
 [node name="LineEdit" type="LineEdit" parent="WhyLine/Button7" unique_id=1086571618]
 layout_mode = 0
@@ -306,9 +388,13 @@ placeholder_text = "Other"
 max_length = 20
 keep_editing_on_text_submit = true
 expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
 flat = true
 caret_blink = true
 script = ExtResource("4_tca83")
+metadata/_edit_use_anchors_ = true
 
 [node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1904463452]
 download_file = "res://new folder/text.txt"
@@ -319,9 +405,53 @@ offset_left = 578.0
 offset_right = 1153.0
 offset_bottom = 642.0
 
-[connection signal="text_submitted" from="LineEdit" to="LineEdit" method="_on_text_submitted"]
-[connection signal="request_completed" from="LineEdit/HTTPRequest" to="LineEdit" method="_on_http_request_request_completed"]
-[connection signal="request_completed" from="LineEdit/HTTPRequest2" to="LineEdit" method="_on_http_request_2_request_completed"]
+[node name="Button" type="Button" parent="." unique_id=547317381]
+offset_left = 213.0
+offset_top = 617.0
+offset_right = 285.0
+offset_bottom = 648.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ahc7q")
+text = "Register"
+script = ExtResource("5_5ekvn")
+
+[node name="id" type="LineEdit" parent="Button" unique_id=2118432275]
+layout_mode = 0
+offset_left = 75.0
+offset_right = 285.0
+offset_bottom = 31.0
+placeholder_text = "Enter ID"
+
+[node name="Name" type="LineEdit" parent="Button" unique_id=1060489233]
+layout_mode = 0
+offset_left = -213.0
+offset_right = -3.0
+offset_bottom = 31.0
+placeholder_text = "Enter Name"
+
+[node name="Control" type="Control" parent="." unique_id=1206179607]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+focus_mode = 2
+script = ExtResource("6_ahc7q")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control" unique_id=1695758535]
+position = Vector2(576, 324)
+texture = ExtResource("7_tca83")
+
+[connection signal="text_submitted" from="ID" to="ID" method="_on_text_submitted"]
+[connection signal="request_completed" from="ID/HTTPRequest" to="ID" method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="ID/HTTPRequest2" to="ID" method="_on_http_request_2_request_completed"]
+[connection signal="text_submitted" from="Name" to="Name" method="_on_text_submitted"]
+[connection signal="request_completed" from="Name/HTTPRequest" to="Name" method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="Name/HTTPRequest2" to="Name" method="_on_http_request_2_request_completed"]
 [connection signal="pressed" from="WhyLine/Button1" to="WhyLine/Button1" method="_on_pressed"]
 [connection signal="pressed" from="WhyLine/Button2" to="WhyLine/Button2" method="_on_pressed"]
 [connection signal="pressed" from="WhyLine/Button3" to="WhyLine/Button3" method="_on_pressed"]
